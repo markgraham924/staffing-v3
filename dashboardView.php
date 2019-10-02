@@ -27,7 +27,7 @@
                         $shiftTimes = $row["content"];
                         $startTime = date("g:ia j F", substr($shiftTimes, 0 , 10));
                         $endTime = date("g:ia j F", substr($shiftTimes, 12 , 10));
-                        echo '<br /><div class="container"><div class="alert alert-primary" role="alert"><h4 class="alert-heading">You are working soon!</h4><p>Your next shift starts soon: '.$startTime.' - '.$endTime.'</p><hr><p class="mb-0">Hope it goes well :P</p></div></div>';
+                        echo '<br /><div class="container"><div class="alert alert-primary" role="alert"><h4 class="alert-heading">You are working soon!</h4><p>Your next shift starts soon: '.$startTime.' - '.$endTime.'</p><hr><p class="mb-0">Hope it goes well :P</p></div></div><br />';
                         $mainNotif = "done";
                     } else {
                         if ($mainNotif != "done") {

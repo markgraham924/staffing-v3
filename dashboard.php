@@ -20,9 +20,49 @@
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send();
              }
+             function showEmployees() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("mainContent").innerHTML = this.responseText;
+                }
+                };
+                xhttp.open("POST", "dashboardEmployees.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send();
+             }
+             function addEmployee() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("mainContent").innerHTML = this.responseText;
+                }
+                };
+                xhttp.open("POST", "dashboardAddEmployee.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send();
+             }
+             function submitAddEmployee() {
+                var fname = document.getElementById("fname").value;
+                var sname = document.getElementById("sname").value;
+                var staffID = document.getElementById("staffID").value;
+                var emailInp = document.getElementById("emailInp").value;
+                var phoneInp = document.getElementById("phoneInp").value;
+                var position = document.getElementById("position").value;
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("mainContent").innerHTML = this.responseText;
+                }
+                };
+                xhttp.open("POST", "submitAddEmployee.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("fname="+fname+"&sname="+sname+"&staffID="+staffID+"&emailInp="+emailInp+"&phoneInp="+phoneInp+"&position="+position);
+             }
         </script>
     </head>
-    <body>
+    <body onload="showDashboard()">
         <?php include "./header.html"?>
         <br />
         <!--Main Content-->
@@ -34,7 +74,7 @@
                         <button type="button" class="btn btn-outline-primary" onclick="showDashboard()">Dashboard</button>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-outline-primary" onclick="">Employees</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="showEmployees()">Employees</button>
                     </div>
                     <div class="col">
                         <button type="button" class="btn btn-outline-primary" onclick="">Positions</button>
