@@ -1,3 +1,11 @@
+<?php
+    if (!isset($_SESSION["login"])) {
+        header("Location: index.php");
+    }
+    if ($_SESSION["login"] != TRUE) {
+        header("Location: index.php");
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,12 +61,23 @@
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("mainContent").innerHTML = this.responseText;
+                    showEmployees();
                 }
                 };
                 xhttp.open("POST", "submitAddEmployee.php", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send("fname="+fname+"&sname="+sname+"&staffID="+staffID+"&emailInp="+emailInp+"&phoneInp="+phoneInp+"&position="+position);
+             }
+             function showPositions() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("mainContent").innerHTML = this.responseText;
+                }
+                };
+                xhttp.open("POST", "dashboardPosition.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send();
              }
         </script>
     </head>
@@ -77,7 +96,7 @@
                         <button type="button" class="btn btn-outline-primary" onclick="showEmployees()">Employees</button>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-outline-primary" onclick="">Positions</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="showPositions()">Positions</button>
                     </div>
                     <div class="col">
                         <button type="button" class="btn btn-outline-primary" onclick="">Tags</button>

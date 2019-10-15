@@ -12,25 +12,21 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT emps.staffID, emps.fname, emps.sname, emps.emailInp, emps.phoneInp, positions.posName FROM emps INNER JOIN positions ON positions.positionID=emps.position";
+    $sql = "SELECT emps.staffID, positions.posName, positions.positionID FROM positions INNER JOIN emps ON positions.positionID=emps.position";
+
+    //for each position append to the array the users in the position
     $result = $conn->query($sql);
 
     $staffID = array();
-    $fname = array();
-    $sname = array();
-    $emailInp = array();
-    $phoneInp = array();
-    $position = array();
+    $posName = array();
+    $positionID = array();
 
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
             array_push($staffID, $row["staffID"]);
-            array_push($fname, $row["fname"]);
-            array_push($sname, $row["sname"]);
-            array_push($emailInp, $row["emailInp"]);
-            array_push($phoneInp, $row["phoneInp"]);
-            array_push($position, $row["posName"]);
+            array_push($posName, $row["posName"]);
+            array_push($positionID, $row["positionID"]);
         }
     }
     $conn->close();

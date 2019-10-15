@@ -1,3 +1,11 @@
+<?php
+    if (!isset($_SESSION["login"])) {
+        header("Location: index.php");
+    }
+    if ($_SESSION["login"] != TRUE) {
+        header("Location: index.php");
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>

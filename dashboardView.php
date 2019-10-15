@@ -1,6 +1,6 @@
 <?php
 
-    $staffID = '00000';
+    $staffID = $_SESSION["staffID"];
 
     $servername = "160.153.131.192";
     $username = "adminStaff";
@@ -15,7 +15,6 @@
     $sql = "SELECT staffID, timeEnd, notifType, content FROM notifications ORDER BY timeEnd ASC";
 
     $mainNotif = "notdone";
-
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
